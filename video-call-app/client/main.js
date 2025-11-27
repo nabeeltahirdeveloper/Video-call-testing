@@ -5,6 +5,11 @@ const callBtn = document.getElementById('callBtn');
 const localVideo = document.getElementById('localVideo');
 const remoteVideo = document.getElementById('remoteVideo');
 const statusDiv = document.getElementById('status');
+const toggleAudioBtn = document.getElementById('toggleAudioBtn');
+const toggleVideoBtn = document.getElementById('toggleVideoBtn');
+
+let isAudioMuted = false;
+let isVideoStopped = false;
 
 let localStream;
 let peerConnection;
@@ -95,6 +100,30 @@ callBtn.addEventListener('click', async () => {
     targetId = otherIdInput.value.trim();
     if (targetId) {
         await startCall();
+    }
+});
+
+toggleAudioBtn.addEventListener('click', () => {
+    if (localStream) {
+        const audioTrack = localStream.getAudioTracks()[0];
+        if (audioTrack) {
+            isAudioMuted = !isAudioMuted;
+            audioTrack.enabled = !isAudioMuted;
+            toggleAudioBtn.textContent = isAudioMuted ? 'Unmute Audio' : 'Mute Audio';
+            toggleAudioBtn.classList.toggle('active', isAudioMuted);
+        }
+    }
+});
+
+toggleVideoBtn.addEventListener('click', () => {
+    if (localStream) {
+        const videoTrack = localStream.getVideoTracks()[0];
+        if (videoTrack) {
+            isVideoStopped = !isVideoStopped;
+            videoTrack.enabled = !isVideoStopped;
+            toggleVideoBtn.textContent = isVideoStopped ? 'Start Video' : 'Stop Video';
+            toggleVideoBtn.classList.toggle('active', isVideoStopped);
+        }
     }
 });
 

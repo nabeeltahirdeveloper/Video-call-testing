@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Call App</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>1-to-1 Video Call</h1>
-        
+
         <div class="connection-panel">
             <div class="input-group">
                 <label for="myId">Your ID:</label>
                 <input type="text" id="myId" placeholder="Enter your ID">
                 <button id="registerBtn">Register</button>
             </div>
-            
+
             <div class="input-group">
                 <label for="otherId">Remote ID:</label>
                 <input type="text" id="otherId" placeholder="Enter remote ID">
                 <button id="callBtn" disabled>Call</button>
             </div>
-            
+
             <div id="status" class="status">Status: Disconnected</div>
         </div>
 
@@ -36,8 +38,14 @@
                 <video id="remoteVideo" autoplay playsinline></video>
             </div>
         </div>
+
+        <div class="controls">
+            <button id="toggleAudioBtn" class="control-btn">Mute Audio</button>
+            <button id="toggleVideoBtn" class="control-btn">Stop Video</button>
+        </div>
     </div>
 
     <script src="main.js"></script>
 </body>
+
 </html>

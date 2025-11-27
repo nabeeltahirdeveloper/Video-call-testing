@@ -95,8 +95,19 @@ app.get('/getIceServers', (req, res) => {
     ];
 
     if (process.env.TURN_URL && process.env.TURN_USERNAME && process.env.TURN_PASSWORD) {
+        const turnUrls = process.env.TURN_URL
+            .split(/[\s,]+/) // Split by comma or whitespace (newlines)
+            .filter(url => url.length > 0)
+            .map(url => {
+                // Add turn: prefix if missing and not stun:
+                if (!url.startsWith('turn:') && !url.startsWith('stun:')) {
+                    return `turn:${url}`;
+                }
+                return url;
+            });
+
         iceServers.push({
-            urls: process.env.TURN_URL,
+            urls: turnUrls,
             username: process.env.TURN_USERNAME,
             credential: process.env.TURN_PASSWORD
         });

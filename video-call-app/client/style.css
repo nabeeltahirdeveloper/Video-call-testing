@@ -112,6 +112,26 @@ video {
     object-fit: cover;
 }
 
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.control-btn {
+    background-color: #6c757d;
+    min-width: 120px;
+}
+
+.control-btn:hover {
+    background-color: #5a6268;
+}
+
+.control-btn.active {
+    background-color: #dc3545;
+}
+
 @media (max-width: 600px) {
     .video-container {
         grid-template-columns: 1fr;

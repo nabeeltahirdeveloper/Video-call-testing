@@ -40,7 +40,7 @@ async function init() {
 }
 
 function connectWebSocket() {
-    ws = new WebSocket('ws://localhost:3000');
+    ws = new WebSocket('ws://video-call-testing.onrender.com');
 
     ws.onopen = () => {
         console.log('Connected to signaling server');

@@ -22,7 +22,7 @@ let rtcConfig = {
 async function init() {
     try {
         // Fetch ICE servers
-        const response = await fetch('http://localhost:3000/getIceServers');
+        const response = await fetch('https://video-call-testing.onrender.com/getIceServers');
         const data = await response.json();
         rtcConfig = { iceServers: data.iceServers };
         console.log('ICE Servers fetched:', rtcConfig);

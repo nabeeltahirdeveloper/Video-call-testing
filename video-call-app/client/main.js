@@ -22,7 +22,7 @@ let rtcConfig = {
 async function init() {
     try {
         // Fetch ICE servers
-        const response = await fetch('https://video-call-testing.onrender.com/getIceServers');
+        const response = await fetch('/getIceServers');
         const data = await response.json();
         rtcConfig = { iceServers: data.iceServers };
         console.log('ICE Servers fetched:', rtcConfig);
@@ -40,7 +40,9 @@ async function init() {
 }
 
 function connectWebSocket() {
-    ws = new WebSocket('ws://video-call-testing.onrender.com');
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = window.location.host;
+    ws = new WebSocket(`${protocol}//${host}`);
 
     ws.onopen = () => {
         console.log('Connected to signaling server');

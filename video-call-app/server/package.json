@@ -4,8 +4,7 @@
   "description": "Signaling server for video call app",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "preinstall": "node dist/setup.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
